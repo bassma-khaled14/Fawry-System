@@ -1,4 +1,4 @@
-package os;
+package jmv;
 
 public interface service_provider {
 	public String provider_name = "";

@@ -7,21 +7,26 @@ public int pass;
 Iservice service;
 Ipayment paymethod;
 public int walletId;
-public void login(String mail,int pass) {
+public boolean login(String mail,int pass) {
 	if(this.mail==mail&& this.pass==pass) {
-		System.out.println("Login done successfully");
+		return true;
 	}
 	else
 	{
-		System.out.println("Wrong mail or passward try again");
+		return false;
 	}
 	
 }
-public void signup(String name,String mail,int pass) {
+public boolean signup(String name,String mail,int pass) {
+	if(this.name!=name || this.mail!=mail) {
 	this.name=name;
 	this.mail=mail;
 	this.pass=pass;
-	
+	return true;
+	}
+	else {
+		return false;
+	}
 }
 public Iservice search(String servName) {
 	if(servName==service.name) {
@@ -30,7 +35,5 @@ public Iservice search(String servName) {
 	else {
 		return null;
 	}
-}
-
-
+	
 }
