@@ -1,4 +1,4 @@
-package os;
+package jmv;
 
 public class we_net implements service_provider {
 	public String provider_name="we internet payment";
