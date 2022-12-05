@@ -1,4 +1,4 @@
-package os;
+package jmv;
 
 public class orange_net implements service_provider {
 	public String provider_name="orange internet payment";
