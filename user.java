@@ -16,7 +16,7 @@ public boolean login(String mail,int pass) {
 	{
 		return false;
 	}
-
+	
 }
 public boolean signup(String name,String mail,int pass) {
 	if(this.name!=name || this.mail!=mail) {
@@ -36,5 +36,3 @@ public Iservice search(String servName) {
 	else {
 		return null;
 	}
-
-}
