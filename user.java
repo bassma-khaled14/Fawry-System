@@ -1,5 +1,4 @@
-package jmv;
-
+package jvm;
 
 public class user {
 public String name;
@@ -36,3 +35,16 @@ public Iservice search(String servName) {
 	else {
 		return null;
 	}
+	
+}
+public int[] reqrefund(int trans_num,int serv_id){
+	
+  int arr[]=new int[2];
+  arr[0]=trans_num;
+  arr[1]=serv_id;
+  return arr;
+  
+}
+
+
+}
