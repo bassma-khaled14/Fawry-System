@@ -25,10 +25,9 @@ package jvm;
 	     System.out.println("Payment : "+am);
 	  }
 	 
-	  public void listrefund(int amount) {
+	  public void listrefund(int amount,int trans_num,int ser_id) {
 
-		  String m = Arrays.toString(refund);  //Array in string format
-	      System.out.println(m);
+		 
 	      String am=String.valueOf(amount);
 	      vc.add("refund : "+am);
 	  }
