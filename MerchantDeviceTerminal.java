@@ -17,6 +17,7 @@ public class MerchantDeviceTerminal {
 	 System.out.println("6.Add overall dicount");
 	 System.out.println("7.Add specific dicount");
 	 System.out.println("8.List user transactions");
+	 System.out.println("9.System Termination");
 	 
 
 	 Scanner sc = new Scanner(System.in);
@@ -34,7 +35,7 @@ public class MerchantDeviceTerminal {
 	  }
 		else {
 			System.out.println("Try again, mail or username already exists");
-			}
+			 }
 		}
 	  if(num==1) {
 		  System.out.println("Enter mail");
@@ -92,6 +93,7 @@ public class MerchantDeviceTerminal {
 				  }
 				  if(pa==3) {
 					  Ipayment p = new wallet();
+					  System.out.println("Enter amount");
 					  int am=sc.nextInt();
 					  p.pay(am);
 					  obj.listpayment(am);
@@ -113,22 +115,20 @@ public class MerchantDeviceTerminal {
 		  
 	  }
 
-	  if(num==6) {
-		  System.out.println("Enter the discount precentages");
-		  int dp=sc.nextInt();
-		  d.setdiscountpres(dp);
-		System.out.println("The discount added");
-		  
-		  
-	  }
 	  if(num==7) {
 		  System.out.println("Enter the discount precentages");
-		  int dp=sc.nextInt();
-		  d.setdiscountpres(dp);
+		  double dp=sc.nextDouble();
+		  for(int i=0; i<a2.size();i++)
+		  {d.addDiscount(a2.get(i),dp);}
 		System.out.println("The discount added");
 	  }
 	  if(num==8) {
 		  obj.print();
+	  }
+	  if(num==9)
+	  {
+		  System.out.println("System Terminated Successfully.");
+		  break;
 	  }
 	  
 	  
