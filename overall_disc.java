@@ -1,9 +1,9 @@
-package jvm;
+package os;
 
 public class overall_disc extends Idiscounts{
 	public int dis;
 
-	public String name=" overall discount";
+	public String name="overall discount";
 public String getname() {
 		
 		return name;
