@@ -5,9 +5,12 @@ public class user {
 public String name;
 public String mail;
 public int pass;
+public double NewUserDiscount = 0.1;
+public double specificDiscount;
+//public state = true;//not occupied
 Iservice service;
 Ipayment paymethod;
-public int walletId;
+public wallet wallet = new wallet();
 public user()
 {
 	
@@ -63,7 +66,7 @@ public Iservice search(String servName) {
 	else {
 		return null;
 	}
-	
+	//main > Iservice.search(string servName)
 }
 public int[] reqrefund(int trans_num,int serv_id){
 	
@@ -97,6 +100,16 @@ public String getName()
 {
 	return name;
 }
-
-
+public void setDiscount(double discount)
+{
+	specificDiscount = discount;
+}
+public double getDiscount()
+{
+	return specificDiscount;
+}
+public void setWalletBalance(int balance)
+{
+	
+}
 }
