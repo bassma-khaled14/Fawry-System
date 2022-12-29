@@ -1,116 +1,123 @@
-package jvm;
+package os;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class MerchantDeviceTerminal {
  public static void main(String[] args) {
 	 transactions obj= new transactions();
-	
-	  while(true) 
-	{
-	System.out.println("manue for user");
-	 System.out.println("pleace Choose an option ");
-	 System.out.println("1.log in");
-	 System.out.println("2.Sign up");
-	 System.out.println("3.Search for service");
-	 System.out.println("4.Pay for service");
-	 System.out.println("5.ask for refund");
-	 System.out.println("manue for admin");
-	 System.out.println("6.add overall dicount");
-	 System.out.println("7.add specific dicount");
-	 System.out.println("8.list user transactions");
+	 ArrayList<user> a2 = new ArrayList<user>();
 	 user a=new user();
 	 admin d=new admin();
+	  while(true) 
+	{
+	 System.out.println("Menu for user");
+	 System.out.println("Please Choose an option ");
+	 System.out.println("1.Log in");
+	 System.out.println("2.Sign up");
+	 System.out.println("Menu for admin");
+	 System.out.println("6.Add overall dicount");
+	 System.out.println("7.Add specific dicount");
+	 System.out.println("8.List user transactions");
+	 
+
 	 Scanner sc = new Scanner(System.in);
 	  int num = sc.nextInt();
-	  if(num==1) {
-		  System.out.println("Enter mail");
-		  String s=sc.next();
-		  System.out.println("Enter passward");
-		  int pass = sc.nextInt();
-		 
-		if(  (a.login(s, pass))==true) {
-			System.out.println("Welcome to system");
-		}
-		else {
-			System.out.println("Try again");
-		}
-		  
-	  }
 	  if(num==2) {
 		  System.out.println("Enter name");
 		  String nam=sc.next();
 		  System.out.println("Enter mail");
 		  String em=sc.next();
-		  System.out.println("Enter passward");
+		  System.out.println("Enter password, numeric");
 		  int pas = sc.nextInt();
-		if(  a.signup(nam, em, pas)==true) {
-		 System.out.println("welcome to system") ;
+		if(a.signup(a2,nam, em, pas)==true) {
+		 System.out.println("Welcome to system") ;
+		 a2.add(new user(nam,em,pas));
 	  }
 		else {
-			System.out.println("try again");
+			System.out.println("Try again, mail or username already exists");
 			}
 		}
-	  if(num==3) {
-		  System.out.println("Enter service name");
-		  String sn=sc.next();
-		 if( a.search(sn)==null) {
-			 System.out.println("service does not exist");
-		 }
-		 	}
-	  if(num==4) {
-		  System.out.println("Choose payment method");
-		  System.out.println("1.card");	
-		  System.out.println("2.cash");	
-		  System.out.println("3.wallet");
-		  int pa = sc.nextInt();
-		
-		  if(pa==1) {
-			 
-			  System.out.println("enter card num");	
-			  int cn = sc.nextInt();
-			  System.out.println("enter pass");
-			  int cp = sc.nextInt();
-			 Ipayment p=new card(cn,cp);
-			  System.out.println("Enter amount");
-			  int am=sc.nextInt();
-			  obj.listpayment(am);
+	  if(num==1) {
+		  System.out.println("Enter mail");
+		  String s=sc.next();
+		  System.out.println("Enter password");
+		  int pass = sc.nextInt();
+		 
+		if(  (a.login(a2,s, pass))==true) {
+			Scanner s1 = new Scanner(System.in);
+			System.out.println("Welcome to system");
+			 System.out.println("3.Search for service");
+			 System.out.println("4.Pay for service");
+			 System.out.println("5.Ask for refund");
+			int num1 = s1.nextInt();
+			  if(num1==3) {
+				  System.out.println("Enter service name");
+				  String sn=sc.next();
+				 if( a.search(sn)==null) {
+					 System.out.println("Service does not exist");
+				 }
+				 	}
+			  if(num1==4) {
+				  System.out.println("Choose payment method");
+				  System.out.println("1.Card");	
+				  System.out.println("2.Cash");	
+				  System.out.println("3.Wallet");
+				  int pa = sc.nextInt();
+				
+				  if(pa==1) {
+					 
+					  System.out.println("Enter card num");	
+					  int cn = sc.nextInt();
+					  System.out.println("Enter pass");
+					  int cp = sc.nextInt();
+					 Ipayment p=new card(cn,cp);
+					  System.out.println("Enter amount");
+					  int am=sc.nextInt();
+					  obj.listpayment(am);
 
-			 if( p.pay(am)==true) {
-				 System.out.println("done ");
-			 }
-			 else {
-				 System.out.println("try again");
-			 }
-			  
+					 if( p.pay(am)==true) {
+						 System.out.println("Done ");
+					 }
+					 else {
+						 System.out.println("Try again");
+					 }
+					  
+					  }
+				  if(pa==2) {
+					  Ipayment p = new cash();
+					  int am=sc.nextInt();
+					  p.pay(am);
+					  obj.listpayment(am);
+					 
+					  
+				  }
+				  if(pa==3) {
+					  Ipayment p = new wallet();
+					  int am=sc.nextInt();
+					  p.pay(am);
+					  obj.listpayment(am);
+				  }
 			  }
-		  if(pa==2) {
-			  Ipayment p = new cash();
-			  int am=sc.nextInt();
-			  p.pay(am);
-			  obj.listpayment(am);
-			 
-			  
-		  }
-		  if(pa==3) {
-			  Ipayment p = new wallet();
-			  int am=sc.nextInt();
-			  p.pay(am);
-			  obj.listpayment(am);
-		  }
-	  }
-	  if(num==5) {
-		  System.out.println("Enter transaction number");
-		  int tn=sc.nextInt();
-		  System.out.println("Enter service id");
-		  int si=sc.nextInt();
-		  a.reqrefund(tn, si);
-		  System.out.println("request done");
+			  if(num1==5) {
+				  System.out.println("Enter transaction number");
+				  int tn=sc.nextInt();
+				  System.out.println("Enter service id");
+				  int si=sc.nextInt();
+				  a.reqrefund(tn, si);
+				  System.out.println("Request done");
+				  
+			  }
+		}
+		else {
+			System.out.println("Incorrect email or password, please try again.");
+		}
 		  
 	  }
+
 	  if(num==6) {
 		  System.out.println("Enter the discount precentages");
 		  int dp=sc.nextInt();
 		  d.setdiscountpres(dp);
-		System.out.println("the discount added");
+		System.out.println("The discount added");
 		  
 		  
 	  }
@@ -118,7 +125,7 @@ public class MerchantDeviceTerminal {
 		  System.out.println("Enter the discount precentages");
 		  int dp=sc.nextInt();
 		  d.setdiscountpres(dp);
-		System.out.println("the discount added");
+		System.out.println("The discount added");
 	  }
 	  if(num==8) {
 		  obj.print();
