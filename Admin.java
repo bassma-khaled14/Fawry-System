@@ -1,11 +1,17 @@
-package jmv;
+package os;
 
-public class Admin {
-	Idiscounts disc=null;
-	ITransaction trans;
-	public void addservice()
-	{
-		System.out.println("the service added is ");
-	}
+public class admin {
+ public String name;
+ //public user u;
+ public int id;
+ public int discountpres;
+ public void addDiscount(user u, double discount) {
+	 u.setDiscount(discount);
+ }
+ public int getdiscountpres() {
+	 return discountpres;
+ }
+ 
 
+ 
 }
