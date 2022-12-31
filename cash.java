@@ -1,9 +1,11 @@
-package jmv;
-	public class cash implements Ipayment{
+package com.fci.advanced.se.FawrySystem;
 
-		@Override
-		public boolean pay(int amount) {
-			return true;	
-		}
-
+public class cash implements Ipayment{
+ 
+	@Override
+	public boolean pay(int amount) {
+		return true;
+		
 	}
+
+}
