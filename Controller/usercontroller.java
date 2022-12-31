@@ -1,13 +1,16 @@
 package com.fci.advanced.se.FawrySystem.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import com.fci.advanced.se.FawrySystem.user;
+import com.fci.advanced.se.FawrySystem.Model.user;
 
 @RestController
 @RequestMapping("api/v1")
-public class usercontroller {
+public class UserController {
 	public user user_obj=new user();
+	public UserController()
+	{
+
+	}
 
 	@PostMapping(value="/signup")
 	public String signup(@RequestBody user u) {
@@ -27,8 +30,6 @@ public class usercontroller {
 		{
 			return "already exists";
 		}
-
-
 	}
 	@GetMapping(value="/login")
 	public String login(@RequestBody user u) {
@@ -49,6 +50,29 @@ public class usercontroller {
 		{
 			return "Incorrect email or password";
 		}
+
+
+	}
+	public user getUser(int pass, String mail) //Get> (X) expose le API
+	{
+		int x=0;
+		int key=0;
+		for(int i=0; i<user_obj.getUserEntity().size();i++) { //size arraylist; i++)
+			key++;
+			if (user_obj.getUserEntity().get(i).getpass() == pass && user_obj.getUserEntity().get(i).getMail().equals(mail)) {
+				x++;
+				break;
+			}
+		}
+		if(x>0)
+		{
+			return user_obj.getUserEntity().get(key);
+		}
+		else
+		{
+			return null;
+		}
+
 
 	}
 
