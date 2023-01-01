@@ -2,10 +2,14 @@ package com.fci.advanced.se.FawrySystem.Controller;
 import com.fci.advanced.se.FawrySystem.Model.Wallet;
 import com.fci.advanced.se.FawrySystem.Model.card;
 import com.fci.advanced.se.FawrySystem.Model.user;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("api/v1/payment")
 public class PaymentController {
     public card usercard=new card();
     public Wallet userWallet=new Wallet();
+    public UserController userctr = new UserController();
     public boolean pay(int amount) {
         if(usercard.cardbalance>=amount)
         {
@@ -18,14 +22,17 @@ public class PaymentController {
         }
 
     }
-    public String pay(int amount, user u) //Update > update lel wallet(root)
+
+   // @PostMapping(value="/pay")
+    @PutMapping (value = "/pay/{amount}/{mail}/{pass}")
+    public String pay( @PathVariable("amount") int amount, @PathVariable("mail") String mail, @PathVariable("pass") int pass) //Update > update lel wallet(root)
     {
-        if(500>u.getWalletBalance())
+        if(amount>userctr.getUser(pass,mail).getWalletBalance())
             return "Payment failed.";
         else
         {
 
-            u.setWalletBalance(u.getWalletBalance()- 500);
+            userctr.getUser(pass,mail).setWalletBalance(userctr.getUser(pass,mail).getWalletBalance()-amount);
              return "Payment succeeded.";
         }
 
